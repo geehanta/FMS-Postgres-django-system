@@ -1,0 +1,26 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "pglocal",
+            "database": "demodb",
+            "username": "postgres",
+            "password": "admin123",
+            "connectionTimeout": 30
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "fmsconnection",
+            "database": "fms",
+            "username": "postgres",
+            "connectionTimeout": 30,
+            "password": "admin123"
+        }
+    ]
+}
