@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import site
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,14 +79,15 @@ WSGI_APPLICATION = 'fms_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fms',  # Name of your PostgreSQL database
-        'USER': 'postgres',  # Your PostgreSQL username
-        'PASSWORD': 'admin123',  # Your PostgreSQL password
-        'HOST': 'localhost',  # Set to 'localhost' if using local PostgreSQL
-        'PORT': '5432',  # Default PostgreSQL port
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
@@ -141,3 +144,5 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 
 ID_ENCRYPTION_KEY = b'UdhnfelTxqj3q6BbPe7H86sfQnboSBzb0irm2atoFUw='
+
+
