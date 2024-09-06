@@ -50,6 +50,7 @@
 </head>
 
 <body class="">
+    {% include 'partials/_sidebar.html' %}
 
     {% block TopNavigation %} {% include "TopNavigation.html" %} {% endblock TopNavigation %}
     <main class="py-5">
@@ -109,7 +110,7 @@
 <!--Footer-->
     <footer class="bg-light text-lg-start">
       
-        <div class="text-center p-3" style="background-color: #373A40;">
+        <div class="text-center p-3" style="background-color: #33372C;">
             <a class="text-white" href="" target="_blank"> © {% now 'Y' %} Copyright: BSL</a>
         </div>
  <!-- Copyright -->
@@ -174,7 +175,20 @@
                 }, 3500)
             }
 
-        })
+        }) 
+      
+            const $button  = document.querySelector('#sidebar-toggle');
+            const $wrapper = document.querySelector('#wrapper');
+
+            $button.addEventListener('click', (e) => {
+                e.preventDefault();
+                $wrapper.classList.toggle('toggled');
+            });
+        (function(){
+        $('#msbo').on('click', function(){
+            $('body').toggleClass('msb-x');
+        });
+        }());  
     </script>
 
 

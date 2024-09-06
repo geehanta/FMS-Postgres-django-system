@@ -16,6 +16,9 @@ import base64
 context = {
     'page_title' : 'File Management System',
 }
+
+def captive_portal(request):
+    return render(request,'captive_portal.html',context)
 #login
 def login_user(request):
     logout(request)
