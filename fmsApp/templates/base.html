@@ -18,6 +18,7 @@
         position: relative;
         z-index: 5; /* Lower than the footer's z-index */
     }
+    
 
     </style>
 <head>
@@ -108,11 +109,11 @@
     </div>
 
 <!--Footer-->
-    <footer class="bg-light text-lg-start">
+    <!-- <footer class="bg-light text-lg-start">
       
         <div class="text-center p-3" style="background-color: #33372C;">
             <a class="text-white" href="" target="_blank"> © {% now 'Y' %} Copyright: BSL</a>
-        </div>
+        </div> -->
  <!-- Copyright -->
     </footer>
     <script>
@@ -188,7 +189,13 @@
         $('#msbo').on('click', function(){
             $('body').toggleClass('msb-x');
         });
-        }());  
+        }()); 
+        (function(){
+    $('#msbo').on('click', function(){
+        $('body').toggleClass('msb-x');
+    });
+    }());  
+
     </script>
 
 
