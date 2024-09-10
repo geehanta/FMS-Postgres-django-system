@@ -16,7 +16,6 @@ body>main {
     flex-shrink: auto;
     flex-grow: auto;
     overflow: auto;
-    background-image: url('{{ MEDIA_URL }}/default/dragon-scales.svg');
 }
 
 body>footer {
@@ -86,7 +85,7 @@ body.loading {
     position: absolute;
     width: 6px;
     height: 6px;
-    background: #fff;
+    background: teal;
     border-radius: 50%;
     animation: lds-default 1.2s linear infinite;
 }

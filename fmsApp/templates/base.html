@@ -2,10 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <style>
-        
         main {
             height: 100%;
-            width: 100%;
+            width: auto;
             overflow: auto;
             background-color: #e7ebe9    
         }
@@ -116,88 +115,90 @@
         </div> -->
  <!-- Copyright -->
     </footer>
-    <script>
-        const loader = $('<div>')
-        loader.attr('id', 'pre-loader')
-        loader.html('<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>')
+<script>
+    // Loader Functions
+    const loader = $('<div>');
+    loader.attr('id', 'pre-loader');
+    loader.html('<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>');
 
-        window.start_loader = function() {
-            $('body').removeClass('loading')
-            if ($('#pre-loader').length > 0)
-                $('#pre-loader').remove();
-            $('body').append(loader)
-            $('body').addClass('loading')
-        }
-        window.end_loader = function() {
-            if ($('#pre-loader').length > 0)
-                $('#pre-loader').remove();
-            $('body').removeClass('loading')
-        }
-        window.uni_modal = function($title = '', $url = '', $size = "") {
-            start_loader()
-            $.ajax({
-                url: $url,
-                error: err => {
-                    console.log()
-                    alert("An error occured")
-                },
-                success: function(resp) {
-                    if (resp) {
-                        $('#uni_modal .modal-title').html($title)
-                        $('#uni_modal .modal-body').html(resp)
-                        if ($size != '') {
-                            $('#uni_modal .modal-dialog').addClass($size + '  modal-dialog-centered')
-                        } else {
-                            $('#uni_modal .modal-dialog').removeAttr("class").addClass("modal-dialog modal-md modal-dialog-centered")
-                        }
-                        $('#uni_modal').modal({
-                            backdrop: 'static',
-                            keyboard: false,
-                            focus: true
-                        })
-                        $('#uni_modal').modal('show')
-                        end_loader()
+    window.start_loader = function() {
+        $('body').removeClass('loading');
+        if ($('#pre-loader').length > 0) $('#pre-loader').remove();
+        $('body').append(loader);
+        $('body').addClass('loading');
+    }
+
+    window.end_loader = function() {
+        if ($('#pre-loader').length > 0) $('#pre-loader').remove();
+        $('body').removeClass('loading');
+    }
+
+    // Modal Functions
+    window.uni_modal = function($title = '', $url = '', $size = '') {
+        start_loader();
+        $.ajax({
+            url: $url,
+            error: err => {
+                console.log(err);
+                alert("An error occurred");
+            },
+            success: function(resp) {
+                if (resp) {
+                    $('#uni_modal .modal-title').html($title);
+                    $('#uni_modal .modal-body').html(resp);
+                    if ($size !== '') {
+                        $('#uni_modal .modal-dialog').addClass($size + ' modal-dialog-centered');
+                    } else {
+                        $('#uni_modal .modal-dialog').removeAttr("class").addClass("modal-dialog modal-md modal-dialog-centered");
                     }
+                    $('#uni_modal').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        focus: true
+                    });
+                    $('#uni_modal').modal('show');
+                    end_loader();
                 }
-            })
-        }
-        window._conf = function($msg = '', $func = '', $params = []) {
-            $('#confirm_modal #confirm').attr('onclick', $func + "(" + $params.join(',') + ")")
-            $('#confirm_modal .modal-body').html($msg)
-            $('#confirm_modal').modal('show')
-        }
-        $(function() {
-            if ($('.redirect-msg').length > 0) {
-                setTimeout(() => {
-                    $('.redirect-msg').hide('slideUp')
-                    setTimeout(() => {
-                        $('.redirect-msg').remove()
-                    }, 500)
-                }, 3500)
             }
+        });
+    }
 
-        }) 
-      
-            const $button  = document.querySelector('#sidebar-toggle');
-            const $wrapper = document.querySelector('#wrapper');
+    // Confirmation Modal
+    window._conf = function($msg = '', $func = '', $params = []) {
+        $('#confirm_modal #confirm').attr('onclick', $func + "(" + $params.join(',') + ")");
+        $('#confirm_modal .modal-body').html($msg);
+        $('#confirm_modal').modal('show');
+    }
 
-            $button.addEventListener('click', (e) => {
-                e.preventDefault();
-                $wrapper.classList.toggle('toggled');
-            });
-        (function(){
-        $('#msbo').on('click', function(){
+    // Sidebar Toggle
+    $(function() {
+        if ($('.redirect-msg').length > 0) {
+            setTimeout(() => {
+                $('.redirect-msg').hide('slideUp');
+                setTimeout(() => {
+                    $('.redirect-msg').remove();
+                }, 500);
+            }, 3500);
+        }
+    });
+
+    const $button = document.querySelector('#sidebar-toggle');
+    const $wrapper = document.querySelector('#wrapper');
+
+    $button.addEventListener('click', (e) => {
+        e.preventDefault();
+        $wrapper.classList.toggle('toggled');
+    });
+
+    // Toggle Class for Body
+    (function() {
+        $('#msbo').on('click', function() {
             $('body').toggleClass('msb-x');
         });
-        }()); 
-        (function(){
-    $('#msbo').on('click', function(){
-        $('body').toggleClass('msb-x');
-    });
-    }());  
+    }());
 
-    </script>
-
+    
+</script>
 
     <script src="{% static 'assets/select2/dist/js/select2.full.js' %}"></script>
 </body>
