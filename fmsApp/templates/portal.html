@@ -1,0 +1,271 @@
+{% extends "base.html" %} {% load humanize %} {% load customfilter %} {% load static %} {% block pageContent %}
+
+<style>
+    main {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        overflow: auto;
+        background-color: #eeeeee;
+
+    }
+    h4 {
+        font-family: sans-serif;
+        font-size: medium;
+        font-weight: bold;
+        }
+        .info-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 12px;
+	        background: #d3d3d3;
+            border-top: 3px solid teal; 
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset,
+                rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        #info-boxer {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 12px;
+	        background: #d3d3d3;
+            border-top: 3px solid teal;
+            box-shadow: rgba(50, 50, 93, 0.15) 0px 30px 50px -12px inset;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .info-box-icon {
+            padding: 20px;
+            border-radius: 12px;
+            background: teal;
+            color: whitesmoke;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+        .info-box-content {
+            flex: 1;
+            padding: 0 20px;
+        }
+        .info-box-number {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .chart-container {
+            width: 100%;
+            height: 450px;
+        }
+        .card-custom {
+            border-top: 4px solid teal;
+            transition: transform 0.3s ease;
+        }
+        .card-custom:hover {
+            transform: translateY(-5px);
+        }
+</style>
+
+<div class="d-flex flex-column w-100 justify-content-start align-items-start">
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#overview">AFI STUDY</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#employees">HTC STUDY</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#reports">UBUNTU</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+       <div id="overview" class="tab-pane fade show active">
+    <h4>Study Overview</h4>
+    <p>Insights into overall study performance and metrics and trend data.</p>
+    <!-- Row for High-Level Stats -->
+     <div class="row">
+        <div class="col-md-3">
+            <div class="info-box">
+                <div class="info-box-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="info-box-content">
+                    <span class="info-box-text">Subjects enrolled</span>
+                    <span class="info-box-number">320</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="info-box">
+                <div class="info-box-icon">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <div class="info-box-content">
+                    <span class="info-box-text">Sites</span>
+                    <span class="info-box-number">13</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="info-box">
+                <div class="info-box-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="info-box-content">
+                    <span class="info-box-text">Needs Improvement</span>
+                    <span class="info-box-number">70</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="info-box">
+                <div class="info-box-icon bg-danger">
+                    <i class="fas fa-user-clock"></i>
+                </div>
+                <div class="info-box-content">
+                    <span class="info-box-text">Pending Reviews</span>
+                    <span class="info-box-number">30</span>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <hr>
+ 
+        
+    <!-- Performance Over Time Chart -->
+    <div class="row align-items-center">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <h5 class="card-title">Recruitment  Over Time</h5>
+                    <canvas id="performanceOverTimeChart" class="chart-container"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <!-- Recent Activities -->
+            <div class="card card-custom">
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr class="d-flex justify-content-between align-items-center">
+                                <th class="flex-grow-1">Scheduled Activities</th>
+                                <th class="d-flex justify-content-end">
+                                    <button class="btn  me-md-2 btn-sm" type="button" style="background-color: teal; color: white;">Open Calendar</button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Safety audit</td>
+                          </tr>
+                          <tr>
+                            <td class="d-flex align-items-center">
+                              KASH Webinar <span class="badge rounded-pill bg-secondary ms-2">Upcoming</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>JKO Certificates</td>
+                          </tr>
+                          <tr>
+                            <td class="d-flex align-items-center">
+                              Joint Safety Office Inspection <span class="badge rounded-pill bg-danger ms-2">Urgent</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Journal Club</td>
+                          </tr>
+                          <tr>
+                            <td class="d-flex align-items-center">
+                              Departmental meeting <span class="badge rounded-pill bg-success ms-2">Done</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- Advanced Analytics Section -->
+   
+    <div class="row" id="info-boxer" >
+        <div class="col-md-4">
+            <h4>Staff Training Completion</h4>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">75%</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4>No of Staff</h4>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4>Compliance Rate</h4>
+            <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
+            </div>
+        </div>
+    </div>
+     
+ <!-- <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+        <div class="card card-default rounded-10 shadow">
+            <div class="card-header" style="background-color:teal; border-bottom:5px solid #af8f6f;">
+                <h4 class="card-title" style="color: white;"><center><b>CAPTIVE PORTAL</b></center></h4>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    
+                    
+                    <button class="btn btn-primary" onclick="window.location.href='{% url 'login' %}'">
+                        Proceed to Login
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>   -->
+</div>
+
+{% endblock pageContent %} {% block ScriptBlock %}
+<script src="{% static 'assets/default/js/chart.js' %}"></script>
+<script>
+    // Performance Chart
+    var performanceCtx = document.getElementById('performanceOverTimeChart').getContext('2d');
+    var performanceChart = new Chart(performanceCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Overall Recruitment',
+                data: [20, 52, 65, 70, 45, 79],
+                backgroundColor: 'rgba(0, 123, 255, 0.4)',
+                borderColor: 'rgba(0, 123, 225, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock ScriptBlock %}
+

@@ -1,42 +1,340 @@
-{% extends "base.html" %} {% load humanize %} {% load customfilter %} {% block pageContent %}
+{% extends "base.html" %} {% load humanize %} {% load customfilter %} {% load static %} {% block pageContent %}
 <style>
+
     main {
         height: 100%;
-        width: auto !important;
+        width: 100%;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-start;
         overflow: auto;
         background-color: #eeeeee;
 
     }
-    .top-auto-height {
-        position: absolute; 
-         top: 20%;
-        height: auto; /* Set height to auto */
+    
+        /* External CSS for Navigation Tabs */
+    .nav-tabs .nav-link {
+        color: white;
+        background-color: gray;
+        padding: 10px 15px; /* Add padding */
+        border: 1px solid white; /* Add white border */
+        margin-right: 5px; /* Add space between nav items */
+    }
+
+    .nav-tabs .nav-link:hover {
+        background-color: teal;
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: #004d4d; /* Darker teal color */
+        color: white;
+        font-weight: bold; /* Make font bolder */
+    }
+    h4 {
+        font-family: sans-serif;
+        font-size: medium;
+        font-weight: bold;
         }
+        .info-box {
+            display: flex;
+            align-items: center;
+            margin-right: 8px;
+            margin-bottom: 5px;
+            padding: 10px;
+            border-radius: 12px;
+	        background: #d3d3d3;
+            border-top: 3px solid teal; 
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset,
+                rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .info-box-icon {
+            padding: 10px;
+            border-radius: 12px;
+            background: teal;
+            color: whitesmoke;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+        .info-box-content {
+            flex: 1;
+            padding: 0 20px;
+        }
+        .info-box-number {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .chart-container {
+            width: 100%;
+            height: 450px;
+        }
+        .card-custom {
+            border-top: 4px solid teal;
+            transition: transform 0.3s ease;
+        }
+        .card-custom:hover {
+            transform: translateY(-5px);
+        }
+        /* Scrollable container styling */
+        .scroll-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            width: 100%;
+            padding: 10px;
+        }
+
+        /* Scroll buttons */
+        .scroll-btn {
+            color: teal;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .scroll-btn:hover {
+            transform: scale(1.2);
+        }
+
+        /* Generate ID button */
+        .btn-teal {
+            background-color: teal;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .btn-teal:hover {
+            background-color: #006666;
+        }
+
+        .btn-teal:active {
+            background-color: #004d4d;
+        }
+        *:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 </style>
-<!-- <div class="d-flex flex-column w-100 justify-content-center align-items-center"> -->
-<div class="d-flex flex-column w-100 justify-content-center align-items-center top-auto-height">   
-    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
-        <div class="card card-default rounded-10 shadow">
-            <div class="card-header" style="background-color:teal; border-bottom:5px solid #af8f6f;">
-                <h4 class="card-title" style="color: white;"><center><b>TOOLS</b></center></h4>
-            </div>
-            <div class="card-body">
-                <div class="container-fluid">
-                    <h5>Welcome to Our New Network</h5>
-                    
-                    <button class="btn btn-primary" onclick="window.location.href='{% url 'login' %}'">
-                        Proceed to Login
-                    </button>
+
+<!-- Body content -->
+<body>
+    <div class="d-flex flex-column w-100 justify-content-start align-items-start"></div>
+        <!-- Navigation Tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#general">
+                    GENERAL TOOLS
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#bio_informatics">
+                    BIO-INFORMATICS TOOLS
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#others">
+                    OTHER TOOLS
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- General Tools Tab -->
+            <div id="general" class="tab-pane fade show active">
+                <br>
+                <p>General tools <span class="badge bg-secondary" id="general-tools-count"></span></p>
+                <div class="d-flex align-items-center" style="width: 100%;">
+                    <!-- Scrollable container with prev/next buttons -->
+                    <button id="prev-general" class="btn scroll-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="scroll-container d-flex flex-nowrap" id="general-tools" style="overflow-x: auto; white-space: nowrap; width: 90%;">
+                        <!-- Tools will be injected here dynamically -->
+                    </div>
+                    <button id="next-general" class="btn scroll-btn"><i class="fas fa-chevron-right"></i></button>
                 </div>
-                
+            </div>
+
+            <!-- Bio-Informatics Tools Tab -->
+            <div id="bio_informatics" class="tab-pane fade">
+                <br>
+                <p>Bio-informatics tools <span class="badge bg-secondary" id="bioinformatics-tools-count"></span></p>
+                <div class="d-flex align-items-center" style="width: 100%;">
+                    <button id="prev-bio" class="btn scroll-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="scroll-container d-flex flex-nowrap" id="bio-informatics-tools" style="overflow-x: auto; white-space: nowrap; width: 90%;">
+                        <!-- Tools will be injected here dynamically -->
+                    </div>
+                    <button id="next-bio" class="btn scroll-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Other Tools Tab -->
+            <div id="others" class="tab-pane fade">
+                <br>
+                <p>Other tools <span class="badge bg-secondary" id="other-tools-count"></span></p>
+                <div class="d-flex align-items-center" style="width: 100%;">
+                    <button id="prev-other" class="btn scroll-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="scroll-container d-flex flex-nowrap" id="other-tools" style="overflow-x: auto; white-space: nowrap; width: 90%;">
+                        <!-- Tools will be injected here dynamically -->
+                    </div>
+                    <button id="next-other" class="btn scroll-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
             </div>
         </div>
+
+        <!-- Output section for tool interactions -->
+        <hr>
+        <div id="tool-output"></div>
     </div>
-</div>
+
+
+
 
 {% endblock pageContent %} {% block ScriptBlock %}
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    // Tool data for each tab
+    const tools = {
+        general: [
+            { icon: 'fas fa-user', text: 'Demographics Generator', id: 'demographics-generator' },
+            { icon: 'fas fa-key', text: 'Random ID Generator', id: 'random-id-generator' },
+            { icon: 'fas fa-users', text: 'Pools Creator', id: 'pools-creator' },
+            { icon: 'fas fa-chart-line', text: 'Levy Jennings Generator', id: 'levy-jennings-generator' },
+            { icon: 'fas fa-chart-alert', text: 'more', id: 'more' }
+        ],
+        bioInformatics: [
+            { icon: 'fas fa-dna', text: 'Genome Analyzer', id: 'genome-analyzer' },
+            { icon: 'fas fa-microscope', text: 'Protein Structure Prediction', id: 'protein-structure-prediction' },
+            { icon: 'fas fa-flask', text: 'CRISPR Simulation Tool', id: 'crispr-simulation' },
+            { icon: 'fas fa-biohazard', text: 'Pathogen Tracker', id: 'pathogen-tracker' }
+        ],
+        others: [
+            { icon: 'fas fa-cogs', text: 'Data Cleaning Tool', id: 'data-cleaning' },
+            { icon: 'fas fa-project-diagram', text: 'Workflow Manager', id: 'workflow-manager' },
+            { icon: 'fas fa-database', text: 'Database Backup Tool', id: 'database-backup' },
+            { icon: 'fas fa-chart-pie', text: 'Data Visualization Tool', id: 'data-visualization' }
+        ]
+    };
 
+    // Function to inject tools into the appropriate section
+    function loadTools(section, toolsArray) {
+        const sectionDiv = document.getElementById(section);
+        sectionDiv.innerHTML = '';
+        toolsArray.forEach(tool => {
+            const toolElement = document.createElement('div');
+            toolElement.classList.add('info-box', 'text-center');
+            toolElement.innerHTML = `
+                <div class="info-box-icon">
+                    <i class="${tool.icon}" style="font-size: 36px;"></i>
+                </div>
+                <div class="info-box-content">
+                    <span class="info-box-text">${tool.text}</span>
+                </div>
+            `;
+            sectionDiv.appendChild(toolElement);
+            if (tool.id) {
+                toolElement.addEventListener('click', function() {
+                    showToolInterface(tool.id);
+                });
+            }
+        });
+    }
+
+    // Function to show the tool interface when clicked
+    function showToolInterface(toolId) {
+        const toolOutput = document.getElementById('tool-output');
+        toolOutput.innerHTML = ''; // Clear previous tool content
+
+        switch (toolId) {
+            case 'random-id-generator':
+                toolOutput.innerHTML = `
+                    <div>
+                        <h4>Random ID Generator</h4>
+                        <form id="random-id-form">
+                            <div class="mb-3">
+                                <label for="prefix">Enter preferred first three letters:</label>
+                                <input type="text" id="prefix" class="form-control" maxlength="3" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="length">Choose ID length:</label>
+                                <input type="number" id="length" class="form-control" min="4" max="12" required>
+                            </div>
+                            <button type="submit" class="btn-teal">Generate ID</button>
+                        </form>
+                        <br>
+                        <div id="id-output" class="alert alert-info" style="display: none;"></div>
+                    </div>
+                `;
+                document.getElementById('random-id-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const prefix = document.getElementById('prefix').value;
+                    const length = parseInt(document.getElementById('length').value);
+                    const randomID = generateRandomID(prefix, length);
+                    const outputDiv = document.getElementById('id-output');
+                    outputDiv.textContent = `Generated ID: ${randomID}`;
+                    outputDiv.style.display = 'block';
+                });
+                break;
+
+            // Add other tools' code here
+            default:
+                toolOutput.innerHTML = '<p>Oops! Tool not available yet.</p>';
+        }
+    }
+
+    // Random ID Generator logic
+    function generateRandomID(prefix, length) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = prefix.toUpperCase();
+        for (let i = 0; i < length - prefix.length; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    }
+
+    // Function to update tool count in the paragraphs
+    function updateToolCount() {
+        document.getElementById('general-tools-count').textContent = tools.general.length;
+        document.getElementById('bioinformatics-tools-count').textContent = tools.bioInformatics.length;
+        document.getElementById('other-tools-count').textContent = tools.others.length;
+    }
+
+    // Initially load the general tools and update tool count
+    loadTools('general-tools', tools.general);
+    updateToolCount();
+
+    // Load tools dynamically when tabs are switched
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            const target = this.getAttribute('href');
+            if (target === '#general') {
+                loadTools('general-tools', tools.general);
+            } else if (target === '#bio_informatics') {
+                loadTools('bio-informatics-tools', tools.bioInformatics);
+            } else if (target === '#others') {
+                loadTools('other-tools', tools.others);
+            }
+        });
+    });
+
+    // Scroll functionality for tool sections
+    document.querySelectorAll('.scroll-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const direction = this.id.startsWith('prev') ? -1 : 1;
+            const containerId = this.id.includes('general') ? 'general-tools' :
+                                this.id.includes('bio') ? 'bio-informatics-tools' : 'other-tools';
+            const container = document.getElementById(containerId);
+            container.scrollBy({ left: direction * 200, behavior: 'smooth' });
+        });
+    });
+});
+</script>
+     
 {% endblock ScriptBlock %}

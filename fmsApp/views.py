@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.decorators import login_required
 from fms_django.settings import MEDIA_ROOT, MEDIA_URL
 import json
@@ -11,14 +12,32 @@ from fmsApp.models import Post
 from cryptography.fernet import Fernet
 from django.conf import settings
 import base64
-# Create your views here.
 
+# Create your views here.
 context = {
     'page_title' : 'File Management System',
 }
+#For pages that dont require login 
+def tools(request):
+    return render(request,'tools.html',context)
+def calendar(request):
+    return render(request,'calendar.html',context)
+# For pages that require login
+@login_required
+def portal(request):
+    return render(request, 'portal.html',context)
 
-def captive_portal(request):
-    return render(request,'captive_portal.html',context)
+@login_required
+def training_folder(request):
+    return render(request, 'training_folder.html')
+
+@login_required
+def inventory(request):
+    return render(request, 'inventory.html')
+
+@login_required
+def reports(request):
+    return render(request, 'reports.html')
 #login
 def login_user(request):
     logout(request)
@@ -33,7 +52,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                resp['status']='success'
+                resp['status']='success' 
             else:
                 resp['msg'] = "Incorrect username or password"
         else:
@@ -43,11 +62,11 @@ def login_user(request):
 #Logout
 def logoutuser(request):
     logout(request)
-    return redirect('/')
+    return redirect('/login')
 
 @login_required
-def home(request):
-    context['page_title'] = 'Home'
+def training_folder(request):
+    context['page_title'] = 'Training'
     if request.user.is_superuser:
         posts = Post.objects.all()
     else:
@@ -55,7 +74,25 @@ def home(request):
     context['posts'] = posts
     context['postsLen'] = posts.count()
     print(request.build_absolute_uri())
-    return render(request, 'home.html',context)
+    return render(request, 'training_folder.html',context)
+
+
+def home(request):
+    if isinstance(request.user, AnonymousUser):
+        # Handle the case where the user is not authenticated
+        context = {
+            'page_title': 'Home',
+            'posts': [],
+            'postsLen': 0
+        }
+    else:
+        context = {
+            'page_title': 'Home',
+            'posts': Post.objects.filter(user=request.user) if not request.user.is_superuser else Post.objects.all(),
+            'postsLen': Post.objects.filter(user=request.user).count() if not request.user.is_superuser else Post.objects.count()
+        }
+    print(request.build_absolute_uri())
+    return render(request, 'home.html', context)
 
 def registerUser(request):
     user = request.user

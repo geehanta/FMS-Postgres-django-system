@@ -4,37 +4,29 @@
     <style>
         #intro {
             /* Margin to fix overlapping fixed navbar */
-            margin-top: 58px;
+            margin-top: 30px;
         }
         
         @media (max-width: 991px) {
             #intro {
                 /* Margin to fix overlapping fixed navbar */
-                margin-top: 45px;
+                margin-top: 25px;
             }
         }
     </style>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-teal fixed-top shadow border-bottom" style="background-color: teal;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-teal fixed-top shadow" style="background-color: teal;">
         <div class="container">
             <!-- Navbar brand -->
             <a class="navbar-brand" target="_blank" href="{% url 'home-page' %}">
-                <img src="{{ MEDIA_URL }}/default/folder-svgrepo-com.svg" height="16" alt="{{ MEDIA_URL }}" loading="lazy" style="margin-top: -3px;" /><span style="color: antiquewhite;">BSL</span>
+                <img src="{{ MEDIA_URL }}/default/microscope.svg" height="16" alt="{{ MEDIA_URL }}" loading="lazy" style="margin-top: -3px;" /><span style="color: teal;">BSL</span>
             </a>
             <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarExample01">
                 <ul class="navbar-nav mr-auto me-auto mb-2 mb-lg-0" id="topNav">    
-                    {% if user.id %}
-                    <li class="nav-item active">
-                        <a class="nav-link" style="color:white;" aria-current="page" href="{% url 'home-page' %}" >My Files <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color:antiquewhite;" aria-current="page" href="{% url 'posts-page' %}"><b>Upload New Document</b></a>
-                    </li>
-                    {% endif %}
                 </ul>
                 <ul class="navbar-nav d-flex flex-row">
                     {% if user.id %} {% if user.profile.user_type == 1 %} {% endif %}
@@ -66,24 +58,3 @@
     <!-- Jumbotron -->
 </header>
 
-<!-- Include jQuery and Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPx51hFzc+o1u61w9DA=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha384-x6zS66e4OACJgSTKzCA7u7kvpg13csyOTJ9+exH8RjVzq5tmhi0v8Oy8Qp5cVoTl" crossorigin="anonymous"></script>
-
-<script>
-    // Activate Bootstrap dropdown
-    $(document).ready(function() {
-        $('.dropdown-toggle').dropdown();
-    });
-    
-    // Highlight active link
-    $(function() {
-        $('#topNav .nav-link').each(function() {
-            var current = '{{ request.get_full_path | urlencode }}';
-            if (current == $(this).attr('href')) {
-                $(this).addClass('active');
-                $(this).closest('.nav-item.dropdown').addClass('active');
-            }
-        });
-    });
-</script>

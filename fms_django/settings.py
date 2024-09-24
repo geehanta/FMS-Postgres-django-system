@@ -140,7 +140,7 @@ MEDIA_ROOT = BASE_DIR / "media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/portal'
 LOGIN_URL = '/login'
 
 ID_ENCRYPTION_KEY = b'UdhnfelTxqj3q6BbPe7H86sfQnboSBzb0irm2atoFUw='

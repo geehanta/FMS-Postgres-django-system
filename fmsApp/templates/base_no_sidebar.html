@@ -2,10 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        *{
-            font-family: 'Poppins', sans-serif;
-        }
         main {
             height: 100%;
             width: auto;
@@ -39,9 +35,8 @@
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/DataTables/datatables.min.css' %}" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'assets/default/css/style.css' %}">
-    
+
     
     <script src="{% static 'assets/default/js/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'assets/font-awesome/js/all.min.js' %}"></script>
@@ -55,8 +50,7 @@
 </head>
 
 <body>
-    {% include 'partials/_sidebar.html' %}
-
+    
     {% block TopNavigation %} {% include "TopNavigation.html" %} {% endblock TopNavigation %}
     <main class="py-5">
         <div class="container mb-3">
@@ -111,13 +105,13 @@
             </div>
         </div>
     </div>
-    
-     <!-- <footer class="bg-dark text-lg-start">
-        <div class="text-center p-2" style="background-color: #33372C;">
-            <a class="text-white" href="" target="_blank" style="text-decoration: none;"> © {% now 'Y' %} Copyright: BSL  Version.1.0.0</a>
+
+     <!-- <footer class="bg-light text-lg-start">
+      
+        <div class="text-center p-3" style="background-color: #33372C;">
+            <a class="text-white" href="" target="_blank"> © {% now 'Y' %} Copyright: BSL</a>
         </div> 
     </footer> -->
-</body>
 <script>
     // Loader Functions
     const loader = $('<div>');
