@@ -5,23 +5,26 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         *{
             font-family: 'Poppins', sans-serif;
+
         }
-        main {
-            height: 100%;
-            width: auto;
-            overflow: auto;
-            background-color: #e7ebe9    
-        }
+        
         footer {
         position: relative;
         z-index: 10; /* Adjust as necessary to ensure it's above the table */
     }
-
     .dataTables_wrapper .dataTables_paginate {
         position: relative;
         z-index: 5; /* Lower than the footer's z-index */
     }
-    
+    main {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url('{{ MEDIA_URL }}/default/bgwindows.jpg');
+        overflow: auto;
+    }
 
     </style>
 <head>
@@ -55,7 +58,7 @@
 </head>
 
 <body>
-    {% include 'partials/_sidebar.html' %}
+    {% include 'partials/sidebar.html' %}
 
     {% block TopNavigation %} {% include "TopNavigation.html" %} {% endblock TopNavigation %}
     <main class="py-5">

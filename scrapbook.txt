@@ -631,8 +631,8 @@ margin-right: -250px;
         </li> -->
         <li>
           <a href="#">
-            <i class='bx bx-pie-chart-alt-2' ></i>
-            <span class="link_name">Analytics</span>
+            <i class='bx bx-pie-chart-alt-2'></i>
+            <span class="link_name">Tools</span>
           </a>
           <ul class="sub-menu blank">
             <li><a class="link_name" href="#">Analytics</a></li>

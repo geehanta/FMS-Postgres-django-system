@@ -1,0 +1,489 @@
+
+<style>
+    /* Google Fonts Import Link */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+ 
+  *{
+    font-family: 'Poppins', sans-serif;
+  }
+  body
+        {
+        margin: 0;
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        backdrop-filter: blur(5px);
+        background-position: center;
+        background-size: cover;
+        font-family: "Poppins", sans-serif;
+        background-repeat: no-repeat;
+        flex-direction: column;
+        }
+  .sidebar{
+    position: fixed;
+    top: 10%;
+    left: 3%;
+    height: auto;
+    width: 290px;
+    z-index: 100;
+    transition: all 0.5s ease;
+  } 
+        .bsl-sidenav
+        {
+            margin-top:30px;
+            width: 240px;
+            height: 640px;
+            background-color: rgba(255, 255, 255, 0.144);
+            border-radius: 20px;
+            border: 1px solid rgb(255, 255, 255);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.9s;
+            zoom: 0.9
+        } 
+        .bsl-sidenav .header
+        {
+            margin: auto;
+            width: 100%;
+            height: 20%;
+            border-radius: 20px;
+            display: flex;
+            
+        }
+        .bsl-sidenav .header .profile
+        {
+            margin: auto;
+            margin-left: 10px;
+            margin-right: -8px;
+            width: 70%;
+            height: 60%;
+            display: flex;
+        }
+        .bsl-sidenav .header .profile .profile-pic
+        {
+            margin: auto;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+        }
+        .bsl-sidenav .header .profile .profile-pic img
+        {
+            width: 30px;
+            height: 30px;
+            margin: auto;
+            border-radius: 50%;
+        }
+        .bsl-sidenav .header .profile .profile-name
+        {
+            margin: auto;
+            margin-left: 0px;
+            width: 60%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .bsl-sidenav .header .profile .profile-name span
+        {
+            margin: auto;
+            margin-left: 0px;
+            margin-bottom: 0px;
+            font-size: 10px;
+        } 
+        .bsl-sidenav .header .profile .profile-name p 
+        {
+            margin: auto;
+            margin-left: 0px;
+            margin-top: 0px;
+            font-size: medium;
+            font-weight: 600;
+        }
+        .bsl-sidenav .header .btn
+        {
+            margin: auto;
+            width: 30%;
+            height: 60%;
+            display: flex;
+        }
+        .bsl-sidenav .header .btn .circle
+        {
+            margin: auto;
+            margin-right: -15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, white 50%, rgba(255, 255, 255, 0) 50%);
+            display: flex;
+            cursor: pointer;
+        }
+        .bsl-sidenav .header .btn .circle img
+        {
+            margin: auto;
+            margin-left: 5px;
+        }
+        .bsl-sidenav .menus
+        {
+            margin: auto;
+            width: 100%;
+            height: 60%;
+            background-color: rgba(255, 255, 255, 0);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .bsl-sidenav .menus p
+        {
+            width: 50%;
+            height: 20px;
+            margin-left: 15px;
+            font-size: medium;
+        }
+        .bsl-sidenav .menus .menu-container
+        {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            margin-top: 0px;
+        }
+        .bsl-sidenav .menus .menu-container .menu
+        {
+            width: 90%;
+            height: 50px;
+            margin: auto;
+            display: flex;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .bsl-sidenav .menus .menu:hover
+        {
+            background-color: teal;
+            color: white;
+            box-shadow: 1px 1px 20px white;
+        }
+        .bsl-sidenav .menus .menu-container .menu .menu-img
+        {
+            margin: auto;
+            display: flex;
+            width: 20%;
+            height: 100%;
+        }
+        .bsl-sidenav .menus .menu-container .menu .menu-name
+        {
+            margin: auto;
+            display: flex;
+            width: 80%;
+            height: 50%;
+        }
+        .bsl-sidenav .menus .menu .menu-img img
+        {
+            margin: auto;
+        }
+        .bsl-sidenav .menus .menu .menu-name p 
+        {
+            height: fit-content;
+            width: fit-content;
+            font-size: medium !important;
+            margin: auto;
+            margin-left: 0px;
+        }
+        .menu-link {
+        text-decoration: none;
+        color: #333; /* Link text color */
+        cursor: pointer; /* Change cursor to indicate clickability */
+        
+    }
+        .service
+        {
+            height: 30% !important;
+        }
+        .bsl-sidenav .footer
+        {
+            margin: auto;
+            width: 100%;
+            height: 20%;
+            background-color: rgba(255, 255, 255, 0);
+            border-radius: 20px;
+            display: flex;
+        }
+        .bsl-sidenav .footer .create-task
+        {
+            width: 70%;
+            height: 80%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: gray;
+            border-radius: 15px;
+        }
+        .bsl-sidenav .footer .create-task img
+        {
+            margin: auto;
+            margin-bottom: 0px;
+            cursor: pointer;
+        }
+        .bsl-sidenav .footer .create-task img:hover
+        {
+            filter: drop-shadow(1px 1px 15px #313131);
+        }
+        .bsl-sidenav .footer .create-task p
+        {
+            font-size: x-small;
+            margin: auto;
+            margin-bottom: 0px;
+        }
+        .bsl-sidenav .footer .create-task span
+        {
+            font-size: 7px;
+            margin: auto;
+            margin-top: 0px;
+        }
+
+        .disclaimer
+        {
+           margin: auto;
+            width: fit-content;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            font-family: 'Belanosima', sans-serif;
+        }
+        .disclaimer a
+        {
+            text-decoration: none;
+            color: #202020;
+            font-family: "Kaushan Script", cursive;
+            font-weight: 900;
+        }
+        .disclaimer a:hover
+        {
+            text-decoration: overline;
+        }
+  </style>
+  <div class="sidebar close">
+    <div id="sidenav" class="bsl-sidenav">
+        <div class="header">
+            <div class="profile">
+                <div class="profile-pic">
+                    <img src="{{ MEDIA_URL }}/default/menu.png" alt="Menu">
+                </div>
+                <div id="pname" class="profile-name">
+                    <span>VER 1.0.0✨</span>
+                    <p class="name" style="color: teal;">BSL</p>
+                </div>
+            </div>
+            <div class="btn">
+                <div id="toggler" class="circle" onclick="toggle()">
+                    <img id="togglericon" width="10" height="10" src="https://img.icons8.com/metro/26/back.png" alt="back"/>
+                </div>
+            </div>
+        </div>
+        <div class="menus">
+            <p style="color: teal;"><b>Menu</b></p>
+            <div class="menu-container">
+      
+                <div class="menu">
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/material/24/dashboard-layout.png" alt="dashboard-layout"/>
+                    </div>
+                    <div class="menu-name">
+                        <a href="{% url 'portal' %}" class="menu-link"><p>Dashboard</p></a>
+                    </div> 
+                       
+                </div>
+                <div class="menu">
+      
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/fluency-systems-filled/48/task.png" alt="task"/>
+                    </div>
+                    <div class="menu-name">
+                        <a href="{% url 'calendar' %}" class="menu-link"><p>Calendar</p></a>
+                    </div>
+                        
+                </div>
+                <div class="menu">
+      
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/puffy-filled/32/calendar.png" alt="calendar"/>
+                    </div>
+                    
+                    <div class="menu-name">
+                        <a href="{% url 'tools' %}" class="menu-link"><p>Tools</p></a>
+                    </div>
+                        
+                </div>
+                <div class="menu">
+      
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/puffy-filled/32/new-post.png" alt="new-post"/>
+                    </div>
+                    
+                    <div class="menu-name">
+                        <a href="{% url 'training_folder' %}" class="menu-link"><p>Training Folder</p></a>
+                    </div>
+                        
+                </div>
+                <div class="menu">
+      
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/ios-filled/50/replay.png" alt="replay"/>
+                    </div>
+                    
+                    <div class="menu-name">
+                        <a href="{% url 'inventory' %}" class="menu-link"><p>Reagents Inventory</p></a>
+                    </div>
+                        
+                </div>
+                <div class="menu">
+      
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/ios-filled/50/replay.png" alt="replay"/>
+                    </div>
+                    
+                    <div class="menu-name">
+                        <a href="{% url 'reports' %}" class="menu-link"><p>Reports</p></a>
+                    </div>
+                        
+                </div>
+            </div>
+            <br>
+            <p style="color: teal;"><b></b></p>
+            <div class="menu-container service">
+                <p style="color: teal;"><b>AI</b></p>
+                <div class="menu">
+      
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/pastel-glyph/64/laptop-metrics--v2.png" alt="laptop-metrics--v2"/>
+                    </div>
+                    
+                    <div class="menu-name">
+                        <p>Surveillance</p>
+                    </div>
+                        
+                </div>
+                <div class="menu">
+      
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/pastel-glyph/64/web--v1.png" alt="web--v1"/>
+                    </div>
+                    
+                    <div class="menu-name">
+                        <p>Pathoprophet</p>
+                    </div>
+                        
+                </div>
+                <div class="menu">
+      
+                    <div class="menu-img">
+                        <img width="12" height="12" src="https://img.icons8.com/windows/32/huawei-logo.png" alt="huawei-logo"/>
+                    </div>
+                    
+                    <div class="menu-name">
+                        <p>More...</p>
+                    </div>
+                        
+                </div>
+            
+            </div>
+            
+           
+        </div>
+        <br>
+        <div class="footer">
+            <div id="createtask" class="create-task">
+                <img id="taskicon" width="25" height="25" src="https://img.icons8.com/ios-filled/50/add--v1.png" alt="add--v1"/>
+                <p id="task">Create new task</p>
+                <span id="link">Or use <b>Invite</b> Link</span>
+            </div>
+        </div>
+      </div>
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <!-- <span class="text">Drop Down Sidebar</span> -->
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+  <script>
+
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener("click", (e)=>{
+     let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+     arrowParent.classList.toggle("showMenu");
+      });
+    }
+    
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+      sidebar.classList.toggle("close");
+    });
+    var toggler = document.getElementById("toggler");
+        var togglericon = document.getElementById("togglericon")
+        var sidenav = document.getElementById("sidenav");
+        var pname = document.getElementById("pname");
+        var menuname = document.getElementsByClassName("menu-name");
+        var createtask = document.getElementById("createtask");
+        var taskicon = document.getElementById("taskicon");
+        var task = document.getElementById("task");
+        var link = document.getElementById("link");
+        var flag = 0;
+        function toggle()
+        {
+            if (flag == 0) 
+            {
+                sidenav.style.width = "85px";
+                pname.style.display = "none";
+                toggler.style.background = "linear-gradient(90deg,  rgba(206, 191, 191, 0) 50%, white 50%)";
+                togglericon.src = "https://img.icons8.com/metro/26/forward.png";
+                togglericon.style.margin = "auto";
+                togglericon.style.marginRight = "5px";
+                createtask.style.backgroundColor = "transparent";
+                task.style.display = "none";
+                link.style.display = "none";
+                taskicon.style.margin = "auto";
+                for (let index = 0; index < menuname.length; index++) {
+                    const element = menuname[index];
+                    element.style.display = 'none';
+                    
+                }
+                flag = 1;
+            } 
+            else 
+            {
+                sidenav.style.width = "220px";
+                toggler.style.background = "linear-gradient(90deg, white 50%, rgba(206, 191, 191, 0) 50%)";
+                togglericon.src = "https://img.icons8.com/metro/26/back.png";
+                togglericon.style.margin = "auto";
+                togglericon.style.marginLeft = "5px";
+                pname.style.display = "flex";
+                taskicon.style.margin = "auto";
+                taskicon.style.marginBottom = "2px";
+                createtask.style.backgroundColor = "white";
+                task.style.display = "block";
+                link.style.display = "block"; 
+                for (let index = 0; index < menuname.length; index++) {
+                    const element = menuname[index];
+                    element.style.display = 'flex';
+                    
+                }
+                flag = 0;
+            }
+            
+        }
+  </script>
