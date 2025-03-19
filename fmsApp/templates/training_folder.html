@@ -2,36 +2,14 @@
 
 <!--Section: Content-->
 <section class="">
-    <div>
-        <h4 fs-3 class="card-title" style="color:teal"><b>Uploaded Documents</b></h4>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="card rounded-20 shadow border-dark text-start summary-card my-2">
-                <div class="card-body">
-                    <div class="d-flex w-100">
-                        <div class="col-6 pe-2">
-                            <div class="summary-title fs-6 border-bottom" style="color: gray;"><b><center>Documents Uploaded</center></b></div>
-                            <div class="summary-count text-end fw-bolder mt-3 px-5" style="color:teal;">{{ postsLen|intcomma }}</div>
-                        </div>
-                        <div class="col-4">
-                            <div class="summary-icon p-3 rounded border text-center bg-gradient bg-light">
-                                <i class="fa fa-folder-open fs-2"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <br>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card card-default border rounded-20 shadow">
                 <div class="card-header"style="background-color: gray; border-bottom:5px solid teal;">
-                    <h4 fs-6 class="card-title" style="color:#fff"><center><b>Training Documents Upload Section</b><p class="font-monospace" style="font-size:x-small;">VERSION .05  FEB 2023</p></center></h4>
-                    <center>
+                    <h4 fs-6 class="card-title" style="color:#fff"><center><b>Training Documents Upload Section</b>
+                        <p class="font-monospace" style="font-size:x-small;">VERSION .05  FEB 2023</p></center>
+                        <span class="badge bg-secondary">Documents uploaded:  {{ postsLen|intcomma }}</span></h4>
+                    
                 </div>
                 <div class="card-body">
                     <div class="container">

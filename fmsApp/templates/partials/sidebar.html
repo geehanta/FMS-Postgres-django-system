@@ -78,6 +78,7 @@
   width:6px;
   height:100%;
   background:teal;
+  font-weight: bolder;
   opacity: 0;
   transition: all 0.25s ease-in-out;
   border-top-right-radius:5px;
@@ -332,6 +333,7 @@
         {% if user.id %}
         <li><a href="{% url 'posts-page' %}">Upload Files</a></li>
         <li><a href="{% url 'training_folder' %}">My files</a></li>
+        <li><a href="{% url 'reviewer_dashboard' %}">All files</a></li>
         {% endif %}
       </ul>
     </li>
@@ -347,9 +349,9 @@
         <li><a class="link_name" href="#">Inventories</a></li>
         <li><a href="{% url 'inventory' %}">Reagent inventory</a></li>
         {% if user.id %}
-        <li><a href="{% url 'inventory' %}">Supplies inventory</a></li>
+        <li><a href="{% url 'inventory' %}">Supplies inventory</a></li>{% endif %}
       </ul>
-    </li>{% endif %}  
+    </li>  
     <li>
       <div class="iocn-link">
         <a href="#">

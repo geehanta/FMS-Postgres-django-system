@@ -23,6 +23,7 @@
                 <div class="container-fluid">
                     <form id="login-user">
                         {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">
                         <div class="mdc-layout-grid">
                             <div class="mdc-layout-grid__inner">
                                 <div class="form-group mb-3">
